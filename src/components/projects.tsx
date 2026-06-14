@@ -1,57 +1,36 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { Plane, ArrowUpRight, Sparkles, Database, Search } from 'lucide-react';
 
-const projects = [
+const tech = [
+  'Next.js 16',
+  'React 19',
+  'TypeScript',
+  'FastAPI',
+  'Python',
+  'MotherDuck',
+  'Supabase',
+  'Stripe',
+  'AI SDK',
+  'Fly.io',
+];
+
+const highlights = [
   {
-    name: 'AI Bot Dashboard',
-    subtitle: 'Multi-Instance AI Bot Management',
-    period: '2024 – Present',
-    tech: ['Next.js', 'TypeScript', 'Hono', 'MongoDB', 'Fly.io', 'Docker', 'Supabase', 'MCP'],
-    bullets: [
-      'Built a personal dashboard and REST API for provisioning and managing isolated AI bot instances on Fly.io, each running on its own machine with a dedicated 1GB volume.',
-      'Engineered instance lifecycle management with Hono + TypeScript, Zod/OpenAPI validation, MongoDB, and an MCP endpoint for LLM-driven control across Telegram, Discord, and Slack.',
-    ],
+    icon: Search,
+    title: 'Ask in plain English',
+    body: 'Describe the trip you want and an LLM parses your intent, then surfaces ranked award redemptions.',
   },
   {
-    name: 'Personal Data Hub',
-    subtitle: 'MCP-Powered Health Data Aggregator',
-    period: '2024 – Present',
-    tech: ['TypeScript', 'Python', 'MCP', 'Oura API', 'Docker', 'Matplotlib'],
-    bullets: [
-      'Built a TypeScript MCP server with a pluggable hub-and-spoke connector architecture, aggregating personal health data from the Oura Ring API and exposing it over Streamable HTTP for real-time LLM consumption.',
-      'Automated weekly health reports with week-over-week metric comparisons and visualizations delivered via styled HTML email.',
-    ],
+    icon: Database,
+    title: 'Backed by live data',
+    body: 'Real award availability scraped from Alaska, JetBlue & Delta — facts come from the database, never the model.',
   },
   {
-    name: 'Spotify Playlist Sync',
-    subtitle: 'Playlist Synchronization Tool',
-    period: 'Jan 2023 – Jul 2023',
-    tech: ['React.js', 'TypeScript', 'Spotify API', 'Firebase', 'Firestore'],
-    bullets: [
-      "Developed a React.js web app with TypeScript, utilizing Spotify's API for user authentication and playlist comparison.",
-      'Employed Google Firebase and Firestore to seamlessly deploy, host, and securely store data for the web application.',
-    ],
-  },
-  {
-    name: "Wolfram's Cellular Automata",
-    subtitle: 'Complex Pattern Generator',
-    period: 'Feb 2022 – Jun 2022',
-    tech: ['Python', 'NumPy', 'Matplotlib', 'Flask', 'Heroku'],
-    bullets: [
-      "Wrote a program in Python using NumPy and Matplotlib that visually generated Wolfram's cellular automata.",
-      'Packaged the program into a web application using the Flask framework and hosted it on the Heroku Cloud Platform.',
-    ],
-  },
-  {
-    name: 'Cryptocurrency Trading Bot',
-    subtitle: 'Automated Trading Software',
-    period: 'May 2021 – Aug 2022',
-    tech: ['Node.js', 'WebSocket', 'Coinbase API'],
-    bullets: [
-      'Designed a cryptocurrency trading algorithm that initiates trades when specified price targets are hit.',
-      'Utilized Node.js to build the bot and establish a WebSocket connection to the Coinbase API to retrieve real-time market data.',
-    ],
+    icon: Sparkles,
+    title: 'Smart redemptions',
+    body: 'Compare the cash value of points across routes and get strategy recommendations for the best redemption.',
   },
 ];
 
@@ -68,43 +47,74 @@ export function Projects() {
         >
           Projects
         </motion.h2>
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project, i) => (
-            <motion.div
-              key={project.name}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.12 }}
-              whileHover={{ y: -6, transition: { duration: 0.2 } }}
-              className="bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-700 hover:border-purple-500/50 transition-colors duration-300 flex flex-col"
-            >
-              <div className="flex-1">
-                <h3 className="text-lg font-semibold text-white mb-1">{project.name}</h3>
-                <p className="text-purple-400 text-sm font-medium mb-1">{project.subtitle}</p>
-                <p className="text-gray-500 text-xs mb-4">{project.period}</p>
-                <ul className="space-y-2 mb-4">
-                  {project.bullets.map((bullet, j) => (
-                    <li key={j} className="text-gray-400 text-sm font-light flex items-start gap-2">
-                      <span className="text-purple-500 mt-1 flex-shrink-0">•</span>
-                      {bullet}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="flex flex-wrap gap-2 mt-auto pt-2">
-                {project.tech.map((t) => (
-                  <span
-                    key={t}
-                    className="text-xs font-medium bg-gray-700 text-gray-300 px-2 py-1 rounded-md border border-gray-600"
-                  >
-                    {t}
+
+        <motion.a
+          href="https://pointspilot.org/"
+          target="_blank"
+          rel="noopener noreferrer"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          whileHover={{ y: -6 }}
+          className="group relative block max-w-4xl mx-auto overflow-hidden rounded-2xl border border-gray-700 bg-gray-800 shadow-xl transition-colors duration-300 hover:border-purple-500/60"
+        >
+          {/* Glow accent */}
+          <div className="pointer-events-none absolute -top-24 -right-24 h-64 w-64 rounded-full bg-purple-600/20 blur-3xl transition-opacity duration-500 group-hover:opacity-100 opacity-70" />
+
+          <div className="relative p-8 sm:p-10">
+            <div className="flex items-start justify-between gap-4">
+              <div className="flex items-center gap-4">
+                <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-purple-600 to-indigo-600 shadow-lg shadow-purple-900/40">
+                  <Plane className="h-7 w-7 text-white" />
+                </div>
+                <div>
+                  <span className="inline-block rounded-full bg-purple-500/10 px-3 py-1 text-xs font-medium text-purple-300 mb-2">
+                    Featured · Live
                   </span>
-                ))}
+                  <h3 className="text-2xl font-bold text-white font-serif leading-none">
+                    Points Pilot
+                  </h3>
+                </div>
               </div>
-            </motion.div>
-          ))}
-        </div>
+              <ArrowUpRight className="h-6 w-6 flex-shrink-0 text-gray-500 transition-all duration-300 group-hover:text-purple-400 group-hover:translate-x-1 group-hover:-translate-y-1" />
+            </div>
+
+            <p className="mt-6 text-gray-300 text-base sm:text-lg font-light leading-relaxed">
+              An AI-powered award-travel intelligence platform. Ask for flights in natural
+              language and Points Pilot returns ranked point redemptions backed by live award
+              availability — so you always know the smartest way to spend your miles.
+            </p>
+
+            <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-6">
+              {highlights.map(({ icon: Icon, title, body }) => (
+                <div key={title}>
+                  <div className="mb-2 flex items-center gap-2 text-purple-400">
+                    <Icon className="h-4 w-4 flex-shrink-0" />
+                    <span className="text-sm font-semibold text-white">{title}</span>
+                  </div>
+                  <p className="text-sm font-light text-gray-400 leading-relaxed">{body}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-8 flex flex-wrap gap-2">
+              {tech.map((t) => (
+                <span
+                  key={t}
+                  className="rounded-md border border-gray-600 bg-gray-700/70 px-2 py-1 text-xs font-medium text-gray-300"
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+
+            <div className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-purple-400 transition-colors group-hover:text-purple-300">
+              Visit pointspilot.org
+              <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </div>
+          </div>
+        </motion.a>
       </div>
     </section>
   );
